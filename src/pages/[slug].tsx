@@ -5,11 +5,11 @@ import { Header } from "@src/components/layouts/Header";
 
 import type { NextPage } from "next";
 
-const HomePage: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Chirp</title>
+        <title>Create T3 App</title>
         <meta name="Chirp" content="Twitter with only Emojis" />
         <link rel="icon" href="logo/favicon.ico" />
       </Head>
@@ -22,4 +22,4 @@ const HomePage: NextPage = () => {
     </>
   );
 };
-export default HomePage;
+export default Page;
