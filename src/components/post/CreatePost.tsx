@@ -6,6 +6,8 @@ import { Button } from "@src/components/ui/button";
 import { api } from "@src/utils/api";
 import { isEmoji } from "@src/utils/zod";
 import { useToast } from "@src/hooks/useToast";
+import { LoadingSpinner } from "@src/components/loading/Spinner";
+import { onEnterKey } from "@src/utils/onKeyEnter";
 
 const CreatePost = () => {
   const { user, isSignedIn } = useUser();
@@ -54,10 +56,11 @@ const CreatePost = () => {
           onChange={(e) => handleChangeInput(e.target.value)}
           className="h-12 flex-grow bg-transparent focus:outline-none"
           disabled={isPosting}
+          onKeyDown={(e) => onEnterKey(e, handleSubmit)}
         />
         <div className="flex w-full justify-end">
           <Button disabled={isPosting} onClick={handleSubmit}>
-            Post
+            <LoadingSpinner loading={isPosting} variant="dark" size="sm" /> Post
           </Button>
         </div>
       </div>
