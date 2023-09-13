@@ -5,16 +5,26 @@ import { UserImage } from "@src/components/avatar/UserImage";
 import { Button } from "@src/components/ui/button";
 import { api } from "@src/utils/api";
 import { isEmoji } from "@src/utils/zod";
+import { useToast } from "@src/hooks/useToast";
 
 const CreatePost = () => {
   const { user, isSignedIn } = useUser();
   const [inputValue, setInputValue] = useState<string>("");
+  const { toast } = useToast();
   const ctx = api.useContext();
 
   const { isLoading: isPosting, mutate } = api.post.create.useMutation({
     onSuccess: () => {
       setInputValue("");
       void ctx.post.getAll.invalidate();
+    },
+    onError: (e) => {
+      const errMessage = e.data?.zodError?.fieldErrors.content;
+
+      toast({
+        title: "Uh oh, Chirp not posted",
+        description: errMessage?.[0] ? errMessage[0] : "Failed to post. Please try again later",
+      });
     },
   });
 
