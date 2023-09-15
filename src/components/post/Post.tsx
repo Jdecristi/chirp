@@ -5,7 +5,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import type { FC } from "react";
 
 import type { RouterOutputs } from "@src/utils/api";
-import { UserImage } from "@src/components/avatar/UserImage";
+import { ProfileImage } from "@src/components/avatar/ProfileImage";
 import Link from "next/link";
 
 type PostProps = RouterOutputs["post"]["getAll"][number];
@@ -19,7 +19,7 @@ const Post: FC<PostProps> = ({ post, author }) => {
   return (
     <div className="flex gap-4">
       <Link href={authorSlug}>
-        <UserImage {...author} />
+        <ProfileImage {...author} />
       </Link>
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-2">

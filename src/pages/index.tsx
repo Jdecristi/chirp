@@ -1,25 +1,17 @@
-import Head from "next/head";
-
 import { PostsCarousel } from "@src/components/post/PostsCarousel";
 import { Header } from "@src/components/layouts/Header";
+import { MainSection } from "@src/components/layouts/MainSection";
 
 import type { NextPage } from "next";
 
 const HomePage: NextPage = () => {
   return (
-    <>
-      <Head>
-        <title>Chirp</title>
-        <meta name="Chirp" content="Twitter with only Emojis" />
-        <link rel="icon" href="logo/favicon.ico" />
-      </Head>
-      <main>
-        <div className="mx-auto min-h-screen md:max-w-2xl md:border-x">
-          <Header />
-          <PostsCarousel />
-        </div>
-      </main>
-    </>
+    <main>
+      <Header />
+      <MainSection>
+        <PostsCarousel />
+      </MainSection>
+    </main>
   );
 };
 export default HomePage;

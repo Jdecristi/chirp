@@ -1,7 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
-import { UserImage } from "@src/components/avatar/UserImage";
+import { ProfileImage } from "@src/components/avatar/ProfileImage";
 import { Button } from "@src/components/ui/button";
 import { api } from "@src/utils/api";
 import { isEmoji } from "@src/utils/zod";
@@ -48,7 +48,7 @@ const CreatePost = () => {
 
   return (
     <div className="flex w-full gap-12 border-b p-4">
-      <UserImage imageUrl={user.imageUrl} username={user.username!} />
+      <ProfileImage imageUrl={user.imageUrl} username={user.username!} />
       <div className="flex w-full flex-col gap-4">
         <input
           placeholder="Type some emojis!"
