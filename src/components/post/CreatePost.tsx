@@ -2,8 +2,10 @@ import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
-import { Button } from "@src/components/Button";
 import { LoadingSpinner } from "@src/components/loading/Spinner";
+import { Button } from "@src/components/ui/Button";
+import { Column } from "@src/components/ui/Column";
+import { Row } from "@src/components/ui/Row";
 import { useToast } from "@src/hooks/useToast";
 import { api } from "@src/utils/api";
 import { onEnterKey } from "@src/utils/onKeyEnter";
@@ -47,9 +49,9 @@ const CreatePost = () => {
   if (!user) return <div className="flex h-12 items-center justify-center">Something went wrong</div>;
 
   return (
-    <div className="flex w-full gap-12 border-b p-4">
+    <Row content="left" align="top" className="gap-12 border-b p-4" filled>
       <ProfileImage imageUrl={user.imageUrl} username={user.username!} />
-      <div className="flex w-full flex-col gap-4">
+      <Column align="left" className="flex w-full flex-col gap-4">
         <input
           placeholder="Type some emojis!"
           value={inputValue}
@@ -58,13 +60,13 @@ const CreatePost = () => {
           disabled={isPosting}
           onKeyDown={(e) => onEnterKey(e, handleSubmit)}
         />
-        <div className="flex w-full justify-end">
+        <Row content="right" filled>
           <Button disabled={isPosting} onClick={handleSubmit}>
             <LoadingSpinner loading={isPosting} variant="dark" size="sm" /> Post
           </Button>
-        </div>
-      </div>
-    </div>
+        </Row>
+      </Column>
+    </Row>
   );
 };
 
