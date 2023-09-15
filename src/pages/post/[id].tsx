@@ -1,25 +1,45 @@
-import Head from "next/head";
-
-import { PostsCarousel } from "@src/components/post/PostsCarousel";
+import { generateServerSideHelpers } from "@src/server/server-utils/generateServerSideHelpers";
+import { api } from "@src/utils/api";
 import { Header } from "@src/components/layouts/Header";
+import { MainSection } from "@src/components/layouts/MainSection";
+import { Post } from "@src/components/post/Post";
 
-import type { NextPage } from "next";
+import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
-const PostPage: NextPage = () => {
+type SinglePostPageProps = InferGetStaticPropsType<typeof getStaticProps> & { postId: string };
+
+const SinglePostPage: NextPage<SinglePostPageProps> = ({ postId }) => {
+  const { data: post } = api.post.getPost.useQuery({ postId });
+
+  if (!post) return <div>404</div>;
+
   return (
-    <>
-      <Head>
-        <title>Create T3 App</title>
-        <meta name="Chirp" content="Twitter with only Emojis" />
-        <link rel="icon" href="logo/favicon.ico" />
-      </Head>
-      <main>
-        <div className="mx-auto min-h-screen md:max-w-2xl md:border-x">
-          <Header />
-          <PostsCarousel />
-        </div>
-      </main>
-    </>
+    <main>
+      <Header />
+      <MainSection>
+        <Post post={post.post} author={post.author} />
+      </MainSection>
+    </main>
   );
 };
-export default PostPage;
+
+const getStaticProps: GetStaticProps = async (context) => {
+  const postId = context.params?.id;
+  if (typeof postId !== "string") throw new Error("Invalid post id");
+
+  const ssg = generateServerSideHelpers();
+
+  await ssg.post.getPost.prefetch({ postId });
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      postId,
+    },
+  };
+};
+
+const getStaticPaths = () => ({ paths: [], fallback: "blocking" });
+
+export { getStaticProps, getStaticPaths };
+export default SinglePostPage;

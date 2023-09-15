@@ -1,10 +1,7 @@
 import Head from "next/head";
-import { createServerSideHelpers } from "@trpc/react-query/server";
-import superjson from "superjson";
 
+import { generateServerSideHelpers } from "@src/server/server-utils/generateServerSideHelpers";
 import { api } from "@src/utils/api";
-import { appRouter } from "@src/server/api/root";
-import { prisma } from "@src/server/db";
 import { Header } from "@src/components/layouts/Header";
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
 import { MainSection } from "@src/components/layouts/MainSection";
@@ -47,11 +44,8 @@ const getStaticProps: GetStaticProps = async (context) => {
   if (typeof slug !== "string") throw new Error("No Slug");
 
   const username = slug.replace("@", "");
-  const ssg = createServerSideHelpers({
-    router: appRouter,
-    ctx: { prisma, userId: null },
-    transformer: superjson,
-  });
+
+  const ssg = generateServerSideHelpers();
 
   await ssg.profile.getUserByUsername.prefetch({ username });
 
@@ -63,12 +57,7 @@ const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-const getStaticPaths = () => {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-};
+const getStaticPaths = () => ({ paths: [], fallback: "blocking" });
 
 export { getStaticProps, getStaticPaths };
 export default ProfilePage;
