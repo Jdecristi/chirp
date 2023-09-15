@@ -1,7 +1,8 @@
-import { api } from "@src/utils/api";
 import { Fragment } from "react";
-import { Post } from "@src/components/post/Post";
+
 import { LoadingSpinner } from "@src/components/loading/Spinner";
+import { Post } from "@src/components/post/Post";
+import { api } from "@src/utils/api";
 
 import type { FC } from "react";
 

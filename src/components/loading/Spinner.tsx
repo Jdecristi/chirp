@@ -1,7 +1,8 @@
-import type { FC, HTMLAttributes } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@src/utils";
+
+import type { FC, HTMLAttributes } from "react";
 
 const loadingSpinnerVariants = cva("mr-2 animate-spin", {
   variants: {
@@ -14,7 +15,7 @@ const loadingSpinnerVariants = cva("mr-2 animate-spin", {
       sm: "h-4 w-4",
       md: "h-8 w-8",
       lg: "h-10 w-10",
-      xl: "h-25 w-25",
+      xl: "h-24 w-24",
     },
   },
   defaultVariants: {
