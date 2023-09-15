@@ -2,8 +2,8 @@ import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
-import { Button } from "@src/components/Button";
 import { LoadingSpinner } from "@src/components/loading/Spinner";
+import { Button } from "@src/components/ui/Button";
 import { useToast } from "@src/hooks/useToast";
 import { api } from "@src/utils/api";
 import { onEnterKey } from "@src/utils/onKeyEnter";
