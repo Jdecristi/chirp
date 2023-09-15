@@ -2,12 +2,12 @@ import { useUser } from "@clerk/nextjs";
 import { useState } from "react";
 
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
-import { Button } from "@src/components/ui/button";
-import { api } from "@src/utils/api";
-import { isEmoji } from "@src/utils/zod";
-import { useToast } from "@src/hooks/useToast";
 import { LoadingSpinner } from "@src/components/loading/Spinner";
+import { Button } from "@src/components/ui/button";
+import { useToast } from "@src/hooks/useToast";
+import { api } from "@src/utils/api";
 import { onEnterKey } from "@src/utils/onKeyEnter";
+import { isEmoji } from "@src/utils/zod";
 
 const CreatePost = () => {
   const { user, isSignedIn } = useUser();
@@ -54,7 +54,7 @@ const CreatePost = () => {
           placeholder="Type some emojis!"
           value={inputValue}
           onChange={(e) => handleChangeInput(e.target.value)}
-          className="h-12 flex-grow bg-transparent focus:outline-none"
+          className="h-12 grow bg-transparent focus:outline-none"
           disabled={isPosting}
           onKeyDown={(e) => onEnterKey(e, handleSubmit)}
         />

@@ -2,11 +2,12 @@
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import type { FC } from "react";
+import Link from "next/link";
+
+import { ProfileImage } from "@src/components/avatar/ProfileImage";
 
 import type { RouterOutputs } from "@src/utils/api";
-import { ProfileImage } from "@src/components/avatar/ProfileImage";
-import Link from "next/link";
+import type { FC } from "react";
 
 type PostProps = RouterOutputs["post"]["getAll"][number];
 

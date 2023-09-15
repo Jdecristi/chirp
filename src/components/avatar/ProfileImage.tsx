@@ -1,11 +1,11 @@
+import { cva } from "class-variance-authority";
 import Image from "next/image";
 
 import { cn } from "@src/utils";
-import { cva } from "class-variance-authority";
 
-import type { FC } from "react";
 import type { RouterOutputs } from "@src/utils/api";
 import type { VariantProps } from "class-variance-authority";
+import type { FC } from "react";
 
 type ProfileProps = {
   username: RouterOutputs["post"]["getAll"][number]["author"]["username"];

@@ -1,11 +1,11 @@
 import Head from "next/head";
 
-import { generateServerSideHelpers } from "@src/server/server-utils/generateServerSideHelpers";
-import { api } from "@src/utils/api";
-import { Header } from "@src/components/layouts/Header";
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
+import { Header } from "@src/components/layouts/Header";
 import { MainSection } from "@src/components/layouts/MainSection";
 import { PostsCarousel } from "@src/components/post/PostsCarousel";
+import { generateServerSideHelpers } from "@src/server/server-utils/generateServerSideHelpers";
+import { api } from "@src/utils/api";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 
@@ -59,5 +59,5 @@ const getStaticProps: GetStaticProps = async (context) => {
 
 const getStaticPaths = () => ({ paths: [], fallback: "blocking" });
 
-export { getStaticProps, getStaticPaths };
+export { getStaticPaths, getStaticProps };
 export default ProfilePage;
