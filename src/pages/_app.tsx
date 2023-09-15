@@ -1,7 +1,7 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import Head from "next/head";
 
-import { Toaster } from "@src/components/ui/toaster";
+import { Toaster } from "@src/components/Toaster";
 import { api } from "@src/utils/api";
 
 import type { AppType } from "next/app";

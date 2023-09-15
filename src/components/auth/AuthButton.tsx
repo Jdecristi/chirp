@@ -1,10 +1,10 @@
 import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
 import { forwardRef } from "react";
 
+import { Button } from "@src/components/Button";
 import { LoadingSpinner } from "@src/components/loading/Spinner";
-import { Button } from "@src/components/ui/button";
 
-import type { ButtonProps } from "@src/components/ui/button";
+import type { ButtonProps } from "@src/components/Button";
 
 const AuthButton = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
   const { isLoaded, isSignedIn } = useAuth();
