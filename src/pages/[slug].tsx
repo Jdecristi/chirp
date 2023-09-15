@@ -24,7 +24,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ username }) => {
       <main>
         <Header />
         <MainSection>
-          <div className="relative h-44 bg-gray-500">
+          <div style={{ backgroundImage: "url(/images/default-banner-image.png)" }} className="relative h-40 bg-contain">
             <div className="absolute bottom-0 translate-y-1/2 px-4">
               <ProfileImage imageUrl={user.imageUrl} username={user.username!} size="lg" />
             </div>
