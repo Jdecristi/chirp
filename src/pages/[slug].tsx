@@ -7,9 +7,10 @@ import { appRouter } from "@src/server/api/root";
 import { prisma } from "@src/server/db";
 import { Header } from "@src/components/layouts/Header";
 import { ProfileImage } from "@src/components/avatar/ProfileImage";
+import { MainSection } from "@src/components/layouts/MainSection";
+import { PostsCarousel } from "@src/components/post/PostsCarousel";
 
 import type { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import { MainSection } from "@src/components/layouts/MainSection";
 
 type ProfilePageProps = InferGetStaticPropsType<typeof getStaticProps> & { username: string };
 
@@ -22,8 +23,6 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ username }) => {
     <>
       <Head>
         <title>@{username}</title>
-        <meta name="Chirp" content="Twitter with only Emojis" />
-        <link rel="icon" href="logo/favicon.ico" />
       </Head>
       <main>
         <Header />
@@ -36,6 +35,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ username }) => {
           <div className="border-b p-4 pt-20">
             <span className="text-3xl">@{user.username}</span>
           </div>
+          <PostsCarousel userId={user.id} />
         </MainSection>
       </main>
     </>
