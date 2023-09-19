@@ -25,8 +25,9 @@
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --error: 0 62.8% 40.6%;
+    --warning: 43 96% 40%;
+    --success: 142 71% 40%;
 
     --border: 215 25% 27%;
     --input: 217.2 32.6% 17.5%;
@@ -45,5 +46,4 @@
 
 body {
   overscroll-behavior: none;
-  overflow: hidden;
 }
