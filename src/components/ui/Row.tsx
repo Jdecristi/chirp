@@ -33,12 +33,19 @@ const rowVariants = cva("flex", {
   },
 });
 
-type RowProps = HTMLAttributes<HTMLDivElement> & VariantProps<typeof rowVariants>;
+type RowProps = HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof rowVariants> & {
+    gap?: string;
+  };
 
-const Row = forwardRef<HTMLDivElement, RowProps>(({ children, content, align, filled, className, ...props }, ref) => (
-  <div className={cn(rowVariants({ content, align, filled, className }))} ref={ref} {...props}>
-    {children}
-  </div>
-));
+const Row = forwardRef<HTMLDivElement, RowProps>(({ children, content, align, filled, gap, className, ...props }, ref) => {
+  const gapStyle = gap ? `gap-${gap}` : "";
+
+  return (
+    <div className={cn(gapStyle, rowVariants({ content, align, filled, className }))} ref={ref} {...props}>
+      {children}
+    </div>
+  );
+});
 
 export { Row };

@@ -23,7 +23,6 @@ const columnVariants = cva("flex flex-col", {
     },
     filled: {
       true: "h-full",
-      false: "",
     },
   },
   defaultVariants: {
@@ -33,12 +32,19 @@ const columnVariants = cva("flex flex-col", {
   },
 });
 
-type ColumnProps = HTMLAttributes<HTMLDivElement> & VariantProps<typeof columnVariants>;
+type ColumnProps = HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof columnVariants> & {
+    gap?: string;
+  };
 
-const Column = forwardRef<HTMLDivElement, ColumnProps>(({ children, content, align, filled, className, ...props }, ref) => (
-  <div className={cn(columnVariants({ content, align, filled, className }))} ref={ref} {...props}>
-    {children}
-  </div>
-));
+const Column = forwardRef<HTMLDivElement, ColumnProps>(({ children, content, align, filled, gap, className, ...props }, ref) => {
+  const gapStyle = gap ? `gap-${gap}` : "";
+
+  return (
+    <div className={cn(gapStyle, columnVariants({ content, align, filled, className }))} ref={ref} {...props}>
+      {children}
+    </div>
+  );
+});
 
 export { Column };
